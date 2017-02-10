@@ -6,10 +6,25 @@
     font-weight: bold;
     font-size: 16pt;
   }
+  .header2{
+    color: #2E1537;
+    /*font-weight: bold;*/
+    font-size: 13pt;
+  }
+  .header1{
+    color: #2E1537;
+    font-weight: bold;
+    font-size: 13pt;
+  }
+  img {
+    height: 50px;
+    width: auto;
+  }
   </style>
 </head>
 <body>
 <?php
+//challenge #1 begins here
 echo "<p class=\"header\">Challenge #1: ISBN Validation";
 //define ISBN as a string
 $ISBN = "996215820X";
@@ -63,8 +78,65 @@ if ($total % 11 == 0) {
   echo "<p>Checking isbn $ISBN for validity......";
   echo "<p>This is NOT a valid ISBN!";
 }
+//challenge #1 ends here
 
-
+//change #2 begins here
+echo "<p class=\"header\">Challenge #2: Coin Toss" . "<br>";
+//part a starts here
+//a outer for loop to decide #of rows
+echo "<p class=\"header1\"> Part A";
+for ($i=1; $i<=5; ++$i){
+  $flips = 2 * $i -1;
+  echo "<p class=\"header2\">Flipping a coin $flips time..." . "<br>";
+  echo"<p>";
+  //an inner for loop to decide how many flips in each row
+  for ($k=1; $k<2*$i; ++$k){
+    //a variable to toss coins
+    $identifier = (mt_rand(0, 1));
+    if ($identifier == 0) {
+      echo '<img src="animal.jpg" alt="icon" />';
+    } else {
+      echo '<img src="people.jpg" alt="icon" />';
+    }
+  }
+  echo"<p>";
+}
+//part b starts here
+echo "<p class=\"header1\"> Part B";
+echo "<p class=\"header2\">Beginning the coin flipping..." . "<br>";
+//a variable to decide how many coins to toss
+// $f = (mt_rand(2,9));
+//a for loop to toss the coins
+// for ($i=1; $i<=$f; ++$i) {
+//   $identifier = (mt_rand(0, 1));
+//   if ($identifier == 0) {
+//     echo '<img src="animal.jpg" alt="icon" />';
+//   } else {
+//     echo '<img src="people.jpg" alt="icon" />';
+//   }
+// }
+//a variable to record coin toss result
+$key = 0;
+//a counter to count the number of tosses
+$count = 0;
+do {
+  ++$count;
+  //a variable to toss coins
+  $result = (mt_rand(0, 1));
+  if ($result == 0) {
+      echo '<img src="animal.jpg" alt="icon" />';
+    } else {
+      echo '<img src="people.jpg" alt="icon" />';
+    }
+  //a if condition to check if $result is equal to "people"
+  if ($result == 1) {
+    //an inner if condition to check if $key is equal to "people"
+    if ($key == $result) {
+      echo "<p>Flip two heads in a row, in $count flips";
+      break;
+    } else $key = 1; //if $resilt is equal to "people" but $key is not equal to "people" then set $key to "people" and run the loop again to see if next $result is euqal to "people" or not
+  } else $key = 0;
+} while (true);
 
 ?>
 </body>
